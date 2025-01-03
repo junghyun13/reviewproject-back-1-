@@ -22,7 +22,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 @SuperBuilder
 @ToString(callSuper = true)
-public class ChatRoom extends BaseEntity {
+public class ChatRoom extends BaseEntity { //Entity는 DB의 테이블과 매핑되는 객체
     private String name;
 
     @OneToMany(mappedBy = "chatRoom", cascade = CascadeType.ALL, orphanRemoval = true)

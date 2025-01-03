@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ChatRoomService {
+public class ChatRoomService { //service는 repository로부터 데이터 가져와서 비지니스 로직 처리
     private final ChatRoomRepository chatRoomRepository;
 
     @Transactional
