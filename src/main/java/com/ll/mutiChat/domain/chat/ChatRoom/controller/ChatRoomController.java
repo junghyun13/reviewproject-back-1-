@@ -12,10 +12,8 @@ import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 @Controller
 @RequestMapping("/chat/room")
@@ -23,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ChatRoomController { //controller는 service로부터 데이터를 가져와서 view에 전달
     private final ChatRoomService chatRoomService;
     private final ChatMessageService chatMessageService;
-    private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
+    //private final List<SseEmitter> emitters = new CopyOnWriteArrayList<>();
     @GetMapping("/{roomId}")
     public String showRoom(
             @PathVariable final long roomId,
