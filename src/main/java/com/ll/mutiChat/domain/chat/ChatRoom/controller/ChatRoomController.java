@@ -95,5 +95,5 @@ public class ChatRoomController {
         List<ChatMessage> messages = chatMessageService.findByChatRoomIdAndIdAfter(roomId, afterId);
 
         return RsData.of("S-1", "%d개의 메시지를 가져왔습니다.".formatted(messages.size()), new GetMessagesAfterResponseBody(messages));
-    } //jpa 사용
+    } //jpa 사용.
 }
