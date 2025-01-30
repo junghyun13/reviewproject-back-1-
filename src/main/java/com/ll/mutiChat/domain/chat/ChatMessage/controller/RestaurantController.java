@@ -1,6 +1,7 @@
 package com.ll.mutiChat.domain.chat.ChatMessage.controller;
 
 
+import com.ll.mutiChat.domain.chat.ChatMessage.entity.Restaurant;
 import com.ll.mutiChat.domain.chat.ChatMessage.service.RestaurantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +23,12 @@ public class RestaurantController {
             @RequestParam("lng") double lng,
             @RequestParam("email") String email) {
         return restaurantService.getRandomRestaurants(lat, lng, email);
+    }
+
+
+    @GetMapping("/detail") //http://localhost:8080/api/restaurants/detail?name=식당 J 식당이름으로 세부사항 출력
+    public Restaurant getRestaurantDetails(@RequestParam String name) {
+        return restaurantService.getRestaurantDetails(name);
     }
 }
 //Postman에서 요청하면 반경 2km, 찜 목록, 겹치는 키워드 조건에 해당하는 식당 이름 5개가 랜덤으로 반환됩니다.

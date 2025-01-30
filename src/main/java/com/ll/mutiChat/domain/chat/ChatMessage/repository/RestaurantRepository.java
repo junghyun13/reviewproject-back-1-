@@ -23,6 +23,8 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     List<Restaurant> findNearby(@Param("lat") double lat,
                                 @Param("lng") double lng,
                                 @Param("radius") double radius);
+
+    Restaurant findByName(String name);
 }
 /*
 @Query(value = "SELECT * FROM restaurants WHERE ST_Distance_Sphere(Point(longitude, latitude), Point(:lng, :lat)) <= :radius", nativeQuery = true)

@@ -18,6 +18,10 @@ public class RestaurantService {
     @Autowired
     private MypageRepository mypageRepository;
 
+    public Restaurant getRestaurantDetails(String name) {
+        return restaurantRepository.findByName(name);
+    }
+
     public List<String> getRandomRestaurants(double lat, double lng, String email) {
         try {
             // 반경 2km 내 식당 검색
