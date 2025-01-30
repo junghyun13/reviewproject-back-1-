@@ -14,6 +14,8 @@ public interface MypageRepository extends JpaRepository<Mypage, Long> {
     @Query("SELECT m.reviewer, COUNT(m.reviewer) AS reviewerCount FROM Mypage m " +
             "GROUP BY m.reviewer ORDER BY reviewerCount DESC")
     List<Object[]> findTopReviewersFromMypage();
+
+    List<Mypage> findByUserEmail(String email);
 }
 
 

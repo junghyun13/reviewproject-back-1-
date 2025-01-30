@@ -3,6 +3,7 @@ package com.ll.mutiChat.domain.chat.ChatMessage.repository;
 import com.ll.mutiChat.domain.chat.ChatMessage.entity.Restaurant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,7 +16,13 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
             "GROUP BY r.reviewer ORDER BY reviewerCount DESC")
     List<Object[]> findTopReviewers();
 
-
+    // 반경 내의 식당 검색
+    @Query("SELECT r FROM Restaurant r WHERE " +
+            "(6371 * acos(cos(radians(:lat)) * cos(radians(r.latitude)) * " +
+            "cos(radians(r.longitude) - radians(:lng)) + sin(radians(:lat)) * sin(radians(r.latitude)))) <= :radius")
+    List<Restaurant> findNearby(@Param("lat") double lat,
+                                @Param("lng") double lng,
+                                @Param("radius") double radius);
 }
 /*
 @Query(value = "SELECT * FROM restaurants WHERE ST_Distance_Sphere(Point(longitude, latitude), Point(:lng, :lat)) <= :radius", nativeQuery = true)
